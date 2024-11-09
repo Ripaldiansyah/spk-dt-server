@@ -50,9 +50,11 @@ class UserController extends Controller
             $request->validate([
                 'name' => 'required|string|max:255',
                 'email' => 'required|string|email|max:255|unique:users',
-                'password' => 'required|string|min:6',
+                'password' => 'required|string|min:8',
             ]);
-
+            $request->merge([
+                "role" => "User"
+            ]);
             $user = User::create($request->all());
             return response()->json($user, 201);
         } catch (Exception $e) {
@@ -81,24 +83,8 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-
-
-        $validator = Validator::make($request->all(),[
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,' . $id,
-            'password' => 'required|string|min:6',
-            'role' => 'required|string',
-            'status' => 'required|string',
-        ]);
-
-        if($validator->fails()){
-            return  response()->json([
-                'error' => $validator->errors()
-            ], 400);
-        }
-
         $user = User::findOrFail($id);
-
+        $user->update($request->all());
         return response()->json([
             "user" => $user
         ], 200);

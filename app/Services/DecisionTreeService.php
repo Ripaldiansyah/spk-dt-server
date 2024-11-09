@@ -201,7 +201,8 @@ class DecisionTreeService
                     'harga' => $product->harga,
                     'garansi' => $product->garansi,
                     'fitur' => $product->fitur,
-                    'kualitas' => $product->kualitas
+                    'kualitas' => $product->kualitas,
+                    'photo' => $product->photo,
                 ];
             })
         ];

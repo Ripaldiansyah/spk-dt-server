@@ -45,6 +45,7 @@ class ProductController extends Controller
                 'garansi' => 'required|string|max:50',
                 'fitur' => 'required|string|max:50',
                 'kualitas' => 'required|string|max:50',
+                'photo' => 'required|string|max:100',
             ]);
             $product = Product::where('product_name', $request->product_name)->first();
             if ($product) {
@@ -56,7 +57,8 @@ class ProductController extends Controller
                 'harga' => $request->harga,
                 'garansi' => $request->garansi,
                 'fitur' => $request->fitur,
-                'kualitas' => $request->kualitas
+                'kualitas' => $request->kualitas,
+                'photo' => $request->photo
             ];
 
             $product = Product::create($product_create);

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('garansi');
             $table->string('fitur');
             $table->string('kualitas');
+            $table->string('photo');
             $table->timestamps();
         });
 
@@ -32,7 +33,7 @@ return new class extends Migration
             $table->string('kualitas');
             $table->string('prediction');
             $table->timestamps();
-            $table->foreign('product_id')->references('id')->on('products');
+//            $table->foreign('product_id')->references('id')->on('products');
         });
     }
 

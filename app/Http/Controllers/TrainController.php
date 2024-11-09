@@ -44,15 +44,10 @@ class TrainController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'price_range' => 'required|string',
-            'warranty_type' => 'required|string',
-            'features' => 'nullable|string',
-            'quality' => 'nullable|string',
-            'prediction' => 'nullable|string',
-        ]);
+
 
         try {
+
             $train = Train::find($id);
             if (!$train) {
                 return response()->json(['message' => 'Train not found'], 404);
