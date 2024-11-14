@@ -72,10 +72,10 @@ class DatabaseSeeder extends Seeder
 
         $data = [
 
-            ['harga' => '1-5 Juta', 'garansi' => 'Resmi', 'fitur' => 'Cukup', 'kualitas' => 'Cukup', 'prediction' => 'Ya'],
-            ['harga' => '1-5 Juta', 'garansi' => 'Resmi', 'fitur' => 'Minim', 'kualitas' => 'Kurang', 'prediction' => 'Tidak'],
-            ['harga' => '1-5 Juta', 'garansi' => 'Resmi', 'fitur' => 'Banyak', 'kualitas' => 'Bagus', 'prediction' => 'Ya'],
-            ['harga' => '6-10 Juta', 'garansi' => 'Resmi', 'fitur' => 'Banyak', 'kualitas' => 'Bagus', 'prediction' => 'Tidak'],
+            ['harga' => '1-5 Juta', 'garansi' => 'Resmi', 'fitur' => 'Cukup', 'kualitas' => 'Cukup', 'prediction' => 'Ya', 'product_id' => 1],
+            ['harga' => '1-5 Juta', 'garansi' => 'Resmi', 'fitur' => 'Minim', 'kualitas' => 'Kurang', 'prediction' => 'Tidak', 'product_id' => 2],
+            ['harga' => '1-5 Juta', 'garansi' => 'Resmi', 'fitur' => 'Banyak', 'kualitas' => 'Bagus', 'prediction' => 'Ya', 'product_id' => 3],
+            ['harga' => '6-10 Juta', 'garansi' => 'Resmi', 'fitur' => 'Banyak', 'kualitas' => 'Bagus', 'prediction' => 'Tidak', 'product_id' => 4],
             ['harga' => '11-15 Juta', 'garansi' => 'Internasional', 'fitur' => 'Minim', 'kualitas' => 'Cukup', 'prediction' => 'Tidak'],
             ['harga' => '11-15 Juta', 'garansi' => 'Distributor', 'fitur' => 'Cukup', 'kualitas' => 'Kurang', 'prediction' => 'Tidak'],
             ['harga' => '6-10 Juta', 'garansi' => 'Resmi', 'fitur' => 'Cukup', 'kualitas' => 'Cukup', 'prediction' => 'Tidak'],

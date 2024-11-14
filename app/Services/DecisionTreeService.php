@@ -5,9 +5,13 @@ namespace App\Services;
 use App\Models\Product;
 use App\Models\Train;
 use Illuminate\Support\Collection;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Session;
 
 class DecisionTreeService
 {
+
+    public  $prediction = [];
     private function log2($number)
     {
         // Avoid log of 0 or negative numbers
@@ -191,7 +195,7 @@ class DecisionTreeService
             $recommendedProducts = $this->findSimilarProducts($sample, $prediction);
         }
 
-        return [
+        $this->prediction = [
             'prediction' => $prediction,
             'input' => $sample,
             'recommended_products' => $recommendedProducts->map(function ($product) {
@@ -206,7 +210,23 @@ class DecisionTreeService
                 ];
             })
         ];
+        Session::put('prediction',  $this->prediction);
+
+        return $this->prediction;
     }
+
+    public function downloadReport()
+    {
+        $predictionData = Session::get('prediction');
+        if (!$predictionData) {
+            return response()->json(['error' => 'Prediction data is missing'], 400);
+        }
+
+        $pdf = Pdf::loadView('report', ['prediction' => $predictionData]);
+        return $pdf->stream('report.pdf');
+    }
+
+
 
     // Train the model
     public function trainModel()

@@ -32,12 +32,18 @@ class DecisionTreeController extends Controller
             ], 400);
         }
 
-        // Get the validated input data
+
         $inputData = $validator->validated();
 
-        // Get the prediction and recommended products
+
         $result = $this->decisionTreeService->getRecommendedProducts($inputData);
 
         return response()->json($result);
+    }
+
+
+    public function downloadReport()
+    {
+        return $this->decisionTreeService->downloadReport();
     }
 }
