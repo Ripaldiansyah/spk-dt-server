@@ -38,6 +38,7 @@ class DecisionTreeController extends Controller
 
         $result = $this->decisionTreeService->getRecommendedProducts($inputData);
 
+
         return response()->json($result);
     }
 

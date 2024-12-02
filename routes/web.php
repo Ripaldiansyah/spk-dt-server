@@ -10,7 +10,7 @@ use App\Http\Controllers\UserController;
 use App\Services\DecisionTreeService;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('/')->group(function () {
+Route::prefix('/api')->group(function () {
     Route::prefix('products')->group(function () {
         Route::get('/', [ProductController::class, 'index']);
         Route::post('/', [ProductController::class, 'store']);
