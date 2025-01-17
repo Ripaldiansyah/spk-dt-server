@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Train;
 use Illuminate\Support\Collection;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 
 class DecisionTreeService
@@ -215,16 +216,29 @@ class DecisionTreeService
         return $this->prediction;
     }
 
-    public function downloadReport()
+    public function downloadReport($request)
     {
-        $predictionData = Session::get('prediction');
-        if (!$predictionData) {
-            return response()->json(['error' => 'Prediction data is missing'], 400);
+        // Ambil data predictionData dari request
+        $predictionData = $request->predictionData;
+
+        // Log untuk memeriksa data predictionData
+        Log::info('Prediction data from session:', ['predictionData' => $predictionData]);
+
+        // Pastikan predictionData ada dan akses produk di dalamnya
+        if (!$predictionData || !isset($predictionData['predictionData'])) {
+            return response()->json(['error' => 'Prediction data is missing or invalid'], 400);
         }
 
-        $pdf = Pdf::loadView('report', ['prediction' => $predictionData]);
+        // Ambil data produk yang ada di dalam predictionData
+        $products = $predictionData['predictionData'];
+
+        // Kirim data produk ke view untuk generate PDF
+        $pdf = Pdf::loadView('report', ['prediction' => $products]);
+
         return $pdf->stream('report.pdf');
     }
+
+
 
 
 

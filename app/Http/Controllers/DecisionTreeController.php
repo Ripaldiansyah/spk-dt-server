@@ -43,8 +43,8 @@ class DecisionTreeController extends Controller
     }
 
 
-    public function downloadReport()
+    public function downloadReport(Request $request)
     {
-        return $this->decisionTreeService->downloadReport();
+        return $this->decisionTreeService->downloadReport($request);
     }
 }
